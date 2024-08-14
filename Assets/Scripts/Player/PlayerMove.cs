@@ -22,6 +22,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
         _rb = GetComponent<Rigidbody>();
         StartGiveSpeed();
         Player.OnNewCoin += AddSpeed;
@@ -53,6 +54,7 @@ public class PlayerMove : MonoBehaviour
         _rb.velocity = new Vector3 (0, _rb.velocity.y,0) + (_moveDirection[_moveIndex] * _moveSpeed);
         if(transform.position.y <= _minY)
         {
+            BestCoin.SetBestCoin(Player.instance.GetCoin());
             SceneManager.LoadSceneAsync(_nameScene);
         }
     }

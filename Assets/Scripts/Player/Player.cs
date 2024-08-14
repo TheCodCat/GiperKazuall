@@ -8,7 +8,14 @@ public class Player : MonoBehaviour
     public static Player instance;
     public static UnityAction OnNewCoin;
     [SerializeField] private int _coin;
-    [SerializeField] private MeshRenderer _meshRenderer;
+    private void Awake()
+    {
+        instance = this;
+    }
+    private void Start()
+    {
+        Debug.Log(BestCoin.GetBestCoin());
+    }
 
     public void AddCoin()
     {
