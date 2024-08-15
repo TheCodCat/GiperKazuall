@@ -8,13 +8,10 @@ public class Player : MonoBehaviour
     public static Player instance;
     public static UnityAction OnNewCoin;
     [SerializeField] private int _coin;
+    [SerializeField] private TypeGame _typeGame;
     private void Awake()
     {
         instance = this;
-    }
-    private void Start()
-    {
-        Debug.Log(BestCoin.GetBestCoin());
     }
 
     public void AddCoin()
@@ -28,4 +25,18 @@ public class Player : MonoBehaviour
         return _coin;
     }
 
+    public void MenuToGame()
+    {
+        _typeGame = TypeGame.Game;
+    }
+
+    public TypeGame GetTypeGame()
+    {
+        return _typeGame;
+    }
+
+}
+public enum TypeGame
+{
+    Pause,Game
 }
