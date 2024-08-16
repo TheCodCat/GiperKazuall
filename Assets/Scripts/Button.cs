@@ -15,4 +15,9 @@ public class Button : MonoBehaviour
             yield return null;
         }
     }
+
+    public void OpenClose(GameObject gameObject)
+    {
+        gameObject.SetActive(!gameObject.activeInHierarchy);
+    }
 }

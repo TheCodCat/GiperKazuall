@@ -17,6 +17,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float _timeAddSpeed;
     [SerializeField] private int _delitelSpeed;
     [SerializeField] private Player _player;
+    [SerializeField] private LeaderBoard _board;
     private int _moveIndex;
     private Rigidbody _rb;
 
@@ -54,10 +55,15 @@ public class PlayerMove : MonoBehaviour
         _rb.velocity = new Vector3 (0, _rb.velocity.y,0) + (_moveDirection[_moveIndex] * _moveSpeed);
         if(transform.position.y <= _minY)
         {
-            SceneManager.LoadSceneAsync(_nameScene);
+            _rb.isKinematic = true;
+            StartCoroutine(Restart());
         }
     }
-
+    private IEnumerator Restart()
+    {
+        yield return _board.SetScoreLeaderBoard(_player.GetCoin());
+        SceneManager.LoadScene(_nameScene);
+    }
     private void AddSpeed()
     {
         if (_player.GetCoin() % _delitelSpeed == 0 && _moveSpeed < _maxSpeed)
