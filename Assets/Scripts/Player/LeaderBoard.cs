@@ -27,7 +27,7 @@ public class LeaderBoard : MonoBehaviour
                         name = items[i].player.id.ToString();
                     }
                     else name = items[i].player.name;
-                    _myItem.SetupLeader($"{items[i].rank}.{name}", items[i].score.ToString());
+                    _myItem.SetupLeader($"{name}", items[i].score.ToString());
                     if(items[i].player.id.ToString() == PlayerPrefs.GetString("PlayerID"))
                     {
                         _myItem.MySelect();

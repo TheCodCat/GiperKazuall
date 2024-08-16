@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(LootLockerSetup());
     }
+    #region Lootlocket
     private IEnumerator LootLockerSetup()
     {
         yield return LoginPlayer();
@@ -45,6 +46,18 @@ public class Player : MonoBehaviour
         yield return new WaitWhile(() => done == false);
     }
 
+    public void SetNewNamePlayer(string name)
+    {
+        LootLockerSDKManager.SetPlayerName(name,(responce) =>
+        {
+            if (responce.success)
+            {
+                Debug.Log("—мена ника");
+            }
+            else { Debug.Log("ќЎибка смены ника"); }
+        });
+    }
+    #endregion
     public void AddCoin()
     {
         _coin++;
